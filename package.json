@@ -1,0 +1,9 @@
+{
+  "name": "com.lerpup.testeur",
+  "displayName": "LerpUp Testeur",
+  "version": "0.1.0",
+  "unity": "6000.0",
+  "description": "Le Testeur LerpUp vérifie ton exercice dans Unity et te donne un code à coller sur le site LerpUp. Menu : LerpUp > Tester cette salle.",
+  "keywords": ["lerpup", "testeur", "apprentissage"],
+  "author": { "name": "LerpUp" }
+}
