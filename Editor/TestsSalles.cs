@@ -16,12 +16,13 @@ namespace LerpUp.Testeur
     }
 
     // Les salles de l'unité 1 qui se testent par du code. Les autres (réglage « à l'œil », comparaison clavier / manette,
-    // marche lente avec Shift qui demande une vraie touche…) se prouvent avec une explication sur le site :
+    // délai perceptible entre l'appui et l'action, juice qui peut être un squash ou des particules…) se prouvent avec une explication sur le site :
     // un test approximatif serait pire que pas de test.
     public static class TestsSalles
     {
         public static readonly TestSalle[] Liste =
         {
+            new TestSalle { Id = "iso-deb-co-1", Titre = "Lire ton script de déplacement", Verifier = LireTonScript },
             new TestSalle { Id = "iso-deb-co-2", Titre = "Passer de Translate au Rigidbody2D", Verifier = Rigidbody },
             new TestSalle { Id = "iso-deb-co-3", Titre = "Choisir l'animation selon la direction", Verifier = Direction8 },
             new TestSalle { Id = "iso-deb-co-7", Titre = "Lire la Console d'erreurs", Verifier = LireLaConsole },
@@ -31,6 +32,25 @@ namespace LerpUp.Testeur
         {
             foreach (var t in Liste) if (t.Id == id) return t;
             return null;
+        }
+
+        // ----- Lire ton script de déplacement : le script DeplacementJoueur est sur un objet, avec son réglage facteurLent -----
+        // La marche lente avec Shift demande une vraie touche : elle reste une preuve par explication sur le site.
+        static void LireTonScript(Resultats r)
+        {
+            r.Ajouter(Outils.ScriptsCompilent(), "Le script compile", "Le script ne compile pas : une erreur rouge reste dans la Console");
+            MonoBehaviour script = null;
+            foreach (var m in UnityEngine.Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+                if (Outils.EstScriptEleve(m) && m.GetType().Name == "DeplacementJoueur") { script = m; break; }
+            r.Ajouter(script != null, "Le script DeplacementJoueur est sur un objet de la scène",
+                "Aucun objet de la scène n'a le script DeplacementJoueur : le nom du fichier doit être exactement celui de la classe, et le script doit être sur ton personnage");
+            if (script == null) return;
+            var champ = new SerializedObject(script).FindProperty("facteurLent");
+            bool existe = champ != null && champ.propertyType == SerializedPropertyType.Float;
+            r.Ajouter(existe, "Le réglage facteurLent est visible dans l'Inspector",
+                "Le script n'a pas de champ facteurLent de type float visible dans l'Inspector : ajoute [SerializeField] float facteurLent = 0.5f;");
+            if (existe) r.Ajouter(champ.floatValue > 0f && champ.floatValue < 1f, "facteurLent est entre 0 et 1 (marche plus lente)",
+                "facteurLent doit être entre 0 et 1 : à 0,5 le personnage avance deux fois moins vite");
         }
 
         // ----- Lire la Console d'erreurs : le script compile, le sprite est assigné, le Rigidbody2D est trouvé -----
