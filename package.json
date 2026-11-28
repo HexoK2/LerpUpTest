@@ -1,9 +1,22 @@
 {
   "name": "com.lerpup.testeur",
   "displayName": "LerpUp Testeur",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "unity": "6000.0",
   "description": "Le Testeur LerpUp vérifie ton exercice dans Unity et te donne un code à coller sur le site LerpUp. Menu : LerpUp > Tester cette salle.",
-  "keywords": ["lerpup", "testeur", "apprentissage"],
-  "author": { "name": "LerpUp" }
+  "keywords": [
+    "lerpup",
+    "testeur",
+    "apprentissage"
+  ],
+  "author": {
+    "name": "LerpUp"
+  },
+  "samples": [
+    {
+      "displayName": "Kit de départ",
+      "description": "Une petite salle iso toute prête : un sol en losanges, Aster (face et dos), le script de la première salle, et un menu LerpUp > Créer la salle de départ.",
+      "path": "Samples~/KitDepart"
+    }
+  ]
 }

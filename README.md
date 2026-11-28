@@ -7,6 +7,8 @@ Unity 6 package for the LerpUp website (lerpup.com). It checks your exercise ins
 
 **Use:** menu LerpUp > Tester cette salle.
 
+**No project yet?** Package Manager > LerpUp Testeur > Samples > Import "Kit de départ", then menu LerpUp > Créer la salle de départ (an iso floor, Aster and the first script, ready to play).
+
 The code is not tamper-proof: see the comments in `Editor/CodeLerpUp.cs`.
 
 ---
@@ -17,5 +19,7 @@ Paquet Unity 6 du site LerpUp. Il vérifie ton exercice et te donne un code à c
 `https://github.com/HexoK2/LerpUpTest.git`
 
 **Utilisation :** menu LerpUp > Tester cette salle.
+
+**Pas encore de projet ?** Package Manager > LerpUp Testeur > Samples > Import « Kit de départ », puis menu LerpUp > Créer la salle de départ (un sol iso, Aster et le premier script, prêts à jouer).
 
 Ce dépôt est envoyé depuis le dossier `unity/LerpUpTesteur` du projet LerpUp : ne le modifie pas ici.
